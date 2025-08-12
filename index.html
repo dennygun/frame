@@ -45,6 +45,10 @@
     button.secondary { background:rgba(255,255,255,0.12); }
     .topbar { position:absolute; left:12px; top:12px; display:flex; gap:8px; pointer-events:auto; z-index:30; }
     .chip { background:rgba(0,0,0,0.45); color:white; padding:8px 10px; border-radius:999px; font-size:14px; }
+    .message { position:absolute; right:12px; top:12px; max-width:320px; background:rgba(0,0,0,0.55); padding:12px; border-radius:10px; font-size:13px; z-index:35; }
+    input[type=file] { display:none; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+    .warning { background:#ffcdd2; color:#000; padding:10px; border-radius:8px; font-size:13px; }
   </style>
 </head>
 <body>
@@ -86,12 +90,16 @@
       <div class="ui">
         <button id="switchBtn" class="secondary">🔁 ganti kamera</button>
         <button id="captureBtn">📸 ambil foto</button>
+        <button id="shareBtn" class="secondary">📤 bagikan</button>
       </div>
+      <div class="message" id="msgBox" style="display:none"></div>
     </div>
   </div>
   <script>
     const video = document.getElementById('camera');
     const switchBtn = document.getElementById('switchBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const shareBtn = document.getElementById('shareBtn');
     const flipLabel = document.getElementById('flipLabel');
     let stream = null;
     let usingFront = true;
@@ -119,6 +127,22 @@
     switchBtn.addEventListener('click', () => {
       usingFront = !usingFront;
       startCamera();
+    });
+
+    captureBtn.addEventListener('click', () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 720;
+      canvas.height = 960;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const link = document.createElement('a');
+      link.download = 'indonesia80.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    shareBtn.addEventListener('click', () => {
+      captureBtn.click();
     });
 
     startCamera();
