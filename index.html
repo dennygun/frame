@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>80 Tahun Kemerdekaan RI, AR Selfie Frame (Portrait)</title>
+  <title>80 Tahun Kemerdekaan RI, AR Selfie Frame (Portrait - Fixed Icons)</title>
   <style>
     /* layout */
     html, body { height:100%; margin:0; background:#000; font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial; color:#fff; }
@@ -19,7 +19,7 @@
     .cta-secondary { background:rgba(255,255,255,0.08); padding:10px 14px; border-radius:10px; }
 
     .ui { position:absolute; left:0; right:0; bottom:18px; display:flex; gap:12px; justify-content:center; pointer-events:auto; z-index:30; }
-    button { background:#e21b2d; color:white; border:none; padding:12px 16px; border-radius:10px; font-size:16px; box-shadow:0 6px 18px rgba(0,0,0,0.25); }
+    button { background:#e21b2d; color:white; border:none; padding:12px 16px; border-radius:10px; font-size:16px; box-shadow:0 6px 18px rgba(0,0,0,0.25); display:flex; align-items:center; gap: 8px; }
     button.secondary { background:rgba(255,255,255,0.12); }
 
     .topbar { position:absolute; left:12px; top:12px; display:flex; gap:8px; pointer-events:auto; z-index:30; }
@@ -39,6 +39,7 @@
   </style>
 </head>
 <body>
+
   <div id="app">
     <video id="camera" autoplay playsinline muted></video>
 
@@ -79,7 +80,7 @@
 
     <div class="center-cta" id="startPanel">
       <div class="warning" id="contextWarning" style="display:none">Note, camera access requires https, or localhost, if you open this file via file:// some browsers will block camera, host the file on Netlify, GitHub Pages, or a local http server</div>
-      <button class="cta-btn" id="startBtn">胴 mulai kamera</button>
+      <button class="cta-btn" id="startBtn">📹 Mulai Kamera</button>
       <label class="cta-secondary" for="fileInput">atau unggah foto, bila kamera diblok</label>
       <input id="fileInput" type="file" accept="image/*" capture="environment" />
     </div>
@@ -90,12 +91,12 @@
 
     <div class="message" id="msgBox" style="display:none"></div>
 
-    <div class="caption">Pusat foto tetap transparan, foto bisa diambil atau dibagikan</div>
+    <div class="caption">Orientasi foto hanya PORTRAIT</div>
 
     <div class="ui">
-      <button id="switchBtn" class="secondary" title="Ganti kamera">煤 ganti kamera</button>
-      <button id="captureBtn">萄 ambil foto</button>
-      <button id="shareBtn" class="secondary">豆 bagikan</button>
+      <button id="switchBtn" class="secondary" title="Ganti kamera">🔄 Ganti Kamera</button>
+      <button id="captureBtn">📷 Ambil Foto</button>
+      <button id="shareBtn" class="secondary">📤 Bagikan</button>
     </div>
 
     <a class="sr-only" id="downloadLink">download</a>
