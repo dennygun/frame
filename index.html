@@ -57,3 +57,198 @@
     <div class="ui"><button id="switchBtn" class="secondary" title="Ganti kamera">🔄 Ganti Kamera</button><button id="captureBtn">📷 Ambil Foto</button><button id="shareBtn" class="secondary">📤 Bagikan</button></div>
     <a class="sr-only" id="downloadLink">download</a>
   </div>
+
+  <script>
+    const video = document.getElementById('camera');
+    const captureBtn = document.getElementById('captureBtn');
+    const shareBtn = document.getElementById('shareBtn');
+    const switchBtn = document.getElementById('switchBtn');
+    const flipLabel = document.getElementById('flipLabel');
+    const startBtn = document.getElementById('startBtn');
+    const fileInput = document.getElementById('fileInput');
+    const startPanel = document.getElementById('startPanel');
+    const msgBox = document.getElementById('msgBox');
+    const contextWarning = document.getElementById('contextWarning');
+
+    let stream = null;
+    let usingFront = true;
+    let usingFileFallback = false;
+
+    function showMessage(text, level = 'info') {
+      msgBox.style.display = 'block';
+      msgBox.textContent = text;
+      msgBox.style.background = level === 'error' ? 'rgba(255,205,210,0.95)' : 'rgba(0,0,0,0.55)';
+    }
+
+    function clearMessage() { msgBox.style.display = 'none'; msgBox.textContent = ''; }
+    function isSecureContext() { return location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1'; }
+    if (!isSecureContext()) { contextWarning.style.display = 'block'; }
+
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    function showImagePreview(blob) {
+      const oldOverlay = document.getElementById('previewOverlay');
+      if (oldOverlay) oldOverlay.remove();
+      
+      const overlay = document.createElement('div');
+      overlay.id = 'previewOverlay';
+      
+      const img = document.createElement('img');
+      const blobUrl = URL.createObjectURL(blob);
+      img.src = blobUrl;
+      
+      const instruction = document.createElement('p');
+      instruction.className = 'instruction';
+      instruction.textContent = 'Tekan lama pada gambar untuk menyimpan, lalu tutup.';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Tutup';
+      closeBtn.className = 'close-btn';
+
+      overlay.appendChild(img);
+      overlay.appendChild(instruction);
+      overlay.appendChild(closeBtn);
+      document.body.appendChild(overlay);
+
+      closeBtn.onclick = () => {
+        overlay.remove();
+        URL.revokeObjectURL(blobUrl);
+      };
+    }
+    
+    function handleDownload(blob, filename) {
+      if (isIOS()) {
+        showImagePreview(blob);
+      } else {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(link.href), 100);
+      }
+    }
+    
+    async function startCamera() {
+      clearMessage();
+      usingFileFallback = false;
+      if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+      const constraints = { video: { facingMode: usingFront ? 'user' : 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false };
+      try {
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+      } catch (err) {
+        if (err.name === 'NotAllowedError') { showMessage('Izin kamera ditolak. Izinkan di pengaturan browser atau unggah foto.', 'error'); return; }
+        try { stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false }); } 
+        catch (err2) { showMessage('Tidak dapat mengakses kamera. Gunakan tombol unggah foto.', 'error'); return; }
+      }
+      video.srcObject = stream;
+      video.onloadedmetadata = () => video.play();
+      video.style.transform = usingFront ? 'scaleX(-1)' : 'scaleX(1)';
+      flipLabel.textContent = usingFront ? 'kamera depan' : 'kamera belakang';
+      startPanel.style.display = 'none';
+      clearMessage();
+    }
+
+    switchBtn.addEventListener('click', async () => {
+      if (usingFileFallback) { showMessage('Tidak bisa ganti kamera saat memakai foto.', 'info'); return; }
+      usingFront = !usingFront;
+      video.style.transform = usingFront ? 'scaleX(-1)' : 'scaleX(1)';
+      flipLabel.textContent = 'memulai ulang kamera...';
+      await startCamera();
+    });
+
+    function svgToImage(svgEl) {
+      const xml = new XMLSerializer().serializeToString(svgEl);
+      const blob = new Blob([xml], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = url;
+      return new Promise((res, rej) => {
+        img.onload = () => { URL.revokeObjectURL(url); res(img); };
+        img.onerror = (e) => { URL.revokeObjectURL(url); rej(e); };
+      });
+    }
+
+    async function processImage() {
+      if (!stream && !usingFileFallback) { showMessage('Kamera belum aktif. Tekan "mulai kamera" atau unggah foto.', 'info'); return null; }
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080; canvas.height = 1920;
+      const ctx = canvas.getContext('2d');
+      const canvasAspectRatio = canvas.width / canvas.height;
+      const vw = video.videoWidth || video.clientWidth;
+      const vh = video.videoHeight || video.clientHeight;
+      if (vw === 0 || vh === 0) { showMessage('Gagal mendapatkan dimensi video.', 'error'); return null; }
+      const videoAspectRatio = vw / vh;
+      let videoSx, videoSy, videoSWidth, videoSHeight;
+      if (videoAspectRatio > canvasAspectRatio) {
+        videoSHeight = vh; videoSWidth = vh * canvasAspectRatio;
+        videoSx = (vw - videoSWidth) / 2; videoSy = 0;
+      } else {
+        videoSWidth = vw; videoSHeight = vw / canvasAspectRatio;
+        videoSx = 0; videoSy = (vh - videoSHeight) / 2;
+      }
+      if (!usingFileFallback && usingFront) {
+        ctx.save(); ctx.scale(-1, 1);
+        ctx.drawImage(video, videoSx, videoSy, videoSWidth, videoSHeight, -canvas.width, 0, canvas.width, canvas.height);
+        ctx.restore();
+      } else {
+        ctx.drawImage(video, videoSx, videoSy, videoSWidth, videoSHeight, 0, 0, canvas.width, canvas.height);
+      }
+      try { const img = await svgToImage(document.querySelector('svg.overlay')); ctx.drawImage(img, 0, 0, canvas.width, canvas.height); } 
+      catch (e) { console.warn('Gagal menggambar overlay SVG.', e); }
+      return canvas;
+    }
+
+    captureBtn.addEventListener('click', async () => {
+      const canvas = await processImage();
+      if (!canvas) return;
+      canvas.toBlob((blob) => {
+        if (!blob) { showMessage('Gagal membuat file gambar.', 'error'); return; }
+        handleDownload(blob, 'indonesia80_portrait.png');
+      }, 'image/png');
+    });
+
+    shareBtn.addEventListener('click', async () => {
+      const canvas = await processImage();
+      if (!canvas) return;
+      canvas.toBlob(async (blob) => {
+        if (!blob) { showMessage('Gagal membuat file untuk dibagikan.', 'error'); return; }
+        const file = new File([blob], 'indonesia80_portrait.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try { await navigator.share({ files: [file], title: 'Dirgahayu ke-80 RI' }); return; } 
+          catch (e) { console.warn('Share API failed, falling back.', e); }
+        }
+        showMessage('Gagal membagikan. Silakan simpan gambar & bagikan manual.', 'info');
+        handleDownload(blob, 'indonesia80_portrait.png');
+      }, 'image/png');
+    });
+
+    startBtn.addEventListener('click', async () => {
+      const perm = await navigator.permissions?.query({ name: 'camera' });
+      if (perm?.state === 'denied') { showMessage('Izin kamera ditolak. Izinkan di pengaturan browser atau unggah foto.', 'error'); return; }
+      await startCamera();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const f = e.target.files && e.target.files[0];
+      if (!f) return;
+      const url = URL.createObjectURL(f);
+      usingFileFallback = true;
+      if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+      video.srcObject = null; video.src = url;
+      video.onloadedmetadata = () => video.play();
+      video.style.transform = 'scaleX(1)';
+      flipLabel.textContent = 'menggunakan foto unggahan';
+      startPanel.style.display = 'none';
+      clearMessage();
+    });
+
+    flipLabel.textContent = 'kamera belum aktif';
+    clearMessage();
+  </script>
+</body>
+</html>
