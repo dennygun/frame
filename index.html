@@ -10,27 +10,6 @@
     #app { position:relative; width:100%; height:100vh; overflow:hidden; }
 
     video#camera { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#111; }
-    
-    /* Force circular crop for camera on all devices */
-    video#camera {
-      clip-path: circle(120px at 50% 50%);
-      -webkit-clip-path: circle(120px at 50% 50%);
-    }
-    
-    /* Responsive circular crop based on screen size */
-    @media (max-width: 480px) {
-      video#camera {
-        clip-path: circle(min(120px, 33vw) at 50% 50%);
-        -webkit-clip-path: circle(min(120px, 33vw) at 50% 50%);
-      }
-    }
-    
-    @media (min-width: 481px) {
-      video#camera {
-        clip-path: circle(120px at 50% 50%);
-        -webkit-clip-path: circle(120px at 50% 50%);
-      }
-    }
 
     .overlay-wrap { position:absolute; inset:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
     svg.overlay { width:100%; height:100%; }
