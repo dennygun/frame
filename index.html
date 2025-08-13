@@ -10,27 +10,6 @@
     #app { position:relative; width:100%; height:100vh; overflow:hidden; }
 
     video#camera { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#111; }
-    
-    /* Force circular crop for camera on all devices */
-    video#camera {
-      clip-path: circle(120px at 50% 50%);
-      -webkit-clip-path: circle(120px at 50% 50%);
-    }
-    
-    /* Responsive circular crop based on screen size */
-    @media (max-width: 480px) {
-      video#camera {
-        clip-path: circle(min(120px, 33vw) at 50% 50%);
-        -webkit-clip-path: circle(min(120px, 33vw) at 50% 50%);
-      }
-    }
-    
-    @media (min-width: 481px) {
-      video#camera {
-        clip-path: circle(120px at 50% 50%);
-        -webkit-clip-path: circle(120px at 50% 50%);
-      }
-    }
 
     .overlay-wrap { position:absolute; inset:0; pointer-events:none; display:flex; align-items:center; justify-content:center; }
     svg.overlay { width:100%; height:100%; }
@@ -202,36 +181,66 @@
           </g>
         </g>
         
-        
-        <!-- Header text above the circular frame -->
+        <!-- Top header with independence theme -->
         <g mask="url(#center-hole)">
           <text x="180" y="80" text-anchor="middle" alignment-baseline="middle" 
-                font-size="22" font-weight="800" fill="url(#whiteGradient)" 
+                font-size="24" font-weight="800" fill="url(#whiteGradient)" 
                 filter="url(#shadow)">
-            80 TAHUN KEMERDEKAAN RI
+            80 TAHUN KEMERDEKAAN
           </text>
           <text x="180" y="105" text-anchor="middle" alignment-baseline="middle" 
-                font-size="14" font-weight="600" fill="url(#goldGradient)" 
+                font-size="16" font-weight="600" fill="url(#goldGradient)" 
                 filter="url(#shadow)">
+            REPUBLIK INDONESIA
+          </text>
+          <text x="180" y="125" text-anchor="middle" alignment-baseline="middle" 
+                font-size="12" font-weight="500" fill="#ffffff" opacity="0.9">
             17 Agustus 1945 - 2025
           </text>
         </g>
         
-        <!-- Footer text below the circular frame -->
+        <!-- Bottom footer with Japfa branding -->
         <g mask="url(#center-hole)">
-          <text x="180" y="620" text-anchor="middle" alignment-baseline="middle" 
-                font-size="18" font-weight="700" fill="url(#japfaOrange)" 
+          <text x="180" y="650" text-anchor="middle" alignment-baseline="middle" 
+                font-size="20" font-weight="700" fill="url(#japfaOrange)" 
                 filter="url(#shadow)">
+            DIRGAHAYU KE-80
+          </text>
+          <text x="180" y="675" text-anchor="middle" alignment-baseline="middle" 
+                font-size="14" font-weight="600" fill="url(#redGradient)">
             PT JAPFA COMFEED INDONESIA
           </text>
-          <text x="180" y="645" text-anchor="middle" alignment-baseline="middle" 
-                font-size="12" font-weight="600" fill="url(#redGradient)">
+          <text x="180" y="695" text-anchor="middle" alignment-baseline="middle" 
+                font-size="11" font-weight="500" fill="url(#japfaOrange)" opacity="0.8">
             Pertumbuhan yang Kuat dan Berkelanjutan
           </text>
-          <text x="180" y="665" text-anchor="middle" alignment-baseline="middle" 
-                font-size="10" font-weight="500" fill="url(#goldGradient)" opacity="0.8">
+          <text x="180" y="710" text-anchor="middle" alignment-baseline="middle" 
+                font-size="9" font-weight="500" fill="#666" opacity="0.7">
             Sustainable and Strong Growth
           </text>
+        </g>
+        
+        <!-- Decorative corner elements -->
+        <g mask="url(#center-hole)">
+          <!-- Top corners with Indonesian symbols -->
+          <g transform="translate(20, 20)">
+            <polygon points="15,5 18,12 25,12 20,17 22,24 15,20 8,24 10,17 5,12 12,12" fill="url(#goldGradient)" filter="url(#shadow)"/>
+          </g>
+          <g transform="translate(325, 20)">
+            <polygon points="15,5 18,12 25,12 20,17 22,24 15,20 8,24 10,17 5,12 12,12" fill="url(#goldGradient)" filter="url(#shadow)"/>
+          </g>
+          
+          <!-- Bottom corners with corporate elements -->
+          <g transform="translate(20, 735)">
+            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.8"/>
+            <text x="15" y="12" text-anchor="middle" font-size="6" font-weight="700" fill="white">JAPFA</text>
+            <text x="15" y="19" text-anchor="middle" font-size="4" font-weight="500" fill="white">2024</text>
+          </g>
+          <g transform="translate(305, 735)">
+            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.8"/>
+            <text x="15" y="12" text-anchor="middle" font-size="6" font-weight="700" fill="white">JAPFA</text>
+            <text x="15" y="19" text-anchor="middle" font-size="4" font-weight="500" fill="white">2024</text>
+          </g>
         </g>
       </svg><rect x="70" y="570" width="220" height="1" fill="url(#goldGradient)"/>
             <rect x="90" y="590" width="180" height="1" fill="url(#japfaOrange)"/>
