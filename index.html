@@ -101,170 +101,148 @@
             <path d="M18,30 L18,0 L25,0 Q35,0 35,10 Q35,15 30,17 L35,30 L28,30 L24,19 L25,19 L25,12 Q25,8 21,8 L25,8 L25,30 Z" fill="url(#japfaOrange)"/>
           </g>
         </defs>
+      <svg class="overlay" viewBox="0 0 360 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="center-hole">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <!-- Circular hole for selfie -->
+            <circle cx="180" cy="390" r="120" fill="black" />
+          </mask>
+          
+          <!-- Gradients for vibrant colors -->
+          <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e21b2d;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#c62828;stop-opacity:1" />
+          </linearGradient>
+          
+          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+          </linearGradient>
+          
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#ffb300;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
+          </linearGradient>
+          
+          <!-- Japfa Orange Gradient -->
+          <linearGradient id="japfaOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e85d28;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#d14d1f;stop-opacity:1" />
+          </linearGradient>
+          
+          <!-- Shadow filters -->
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="black" flood-opacity="0.4"/>
+          </filter>
+        </defs>
         
-        <!-- Top section with enhanced styling and Japfa branding -->
+        <!-- Background with Indonesian flag colors -->
         <g mask="url(#center-hole)">
-          <rect x="0" y="0" width="100%" height="130" fill="url(#redGradient)" />
+          <!-- Red background (top half) -->
+          <rect x="0" y="0" width="100%" height="390" fill="url(#redGradient)" />
+          <!-- White background (bottom half) -->
+          <rect x="0" y="390" width="100%" height="390" fill="url(#whiteGradient)" />
+        </g>
+        
+        <!-- Circular frame design inspired by Japfa annual report -->
+        <g mask="url(#center-hole)">
+          <!-- Outer orange circle -->
+          <circle cx="180" cy="390" r="180" fill="url(#japfaOrange)" />
+          <circle cx="180" cy="390" r="165" fill="url(#whiteGradient)" />
           
-          <!-- Decorative border with Japfa orange accent -->
-          <rect x="0" y="125" width="100%" height="3" fill="url(#goldGradient)" />
-          <rect x="0" y="128" width="100%" height="2" fill="url(#japfaOrange)" />
+          <!-- Inner decorative circle with dots -->
+          <circle cx="180" cy="390" r="155" fill="url(#japfaOrange)" />
+          <circle cx="180" cy="390" r="140" fill="url(#whiteGradient)" />
           
-          <!-- Japfa logo on left, Indonesian flag on right -->
-          <g transform="translate(8, 8)">
-            <!-- Japfa brand circle -->
-            <circle cx="20" cy="16" r="16" fill="url(#japfaOrange)" stroke="url(#goldGradient)" stroke-width="2"/>
-            <text x="20" y="12" text-anchor="middle" alignment-baseline="middle" 
-                  font-size="10" font-weight="700" fill="white">JAPFA</text>
-            <text x="20" y="22" text-anchor="middle" alignment-baseline="middle" 
-                  font-size="6" font-weight="500" fill="white">COMFEED</text>
+          <!-- White dots around the circle (like in Japfa design) -->
+          <g fill="white">
+            <circle cx="180" cy="235" r="8" />
+            <circle cx="225" cy="250" r="8" />
+            <circle cx="260" cy="280" r="8" />
+            <circle cx="285" cy="320" r="8" />
+            <circle cx="300" cy="365" r="8" />
+            <circle cx="305" cy="415" r="8" />
+            <circle cx="285" cy="460" r="8" />
+            <circle cx="260" cy="500" r="8" />
+            <circle cx="225" cy="530" r="8" />
+            <circle cx="180" cy="545" r="8" />
+            <circle cx="135" cy="530" r="8" />
+            <circle cx="100" cy="500" r="8" />
+            <circle cx="75" cy="460" r="8" />
+            <circle cx="55" cy="415" r="8" />
+            <circle cx="60" cy="365" r="8" />
+            <circle cx="75" cy="320" r="8" />
+            <circle cx="100" cy="280" r="8" />
+            <circle cx="135" cy="250" r="8" />
           </g>
-          
-          <g transform="translate(312, 8)">
-            <rect x="0" y="0" width="40" height="24" rx="4" fill="url(#redGradient)" stroke="url(#goldGradient)" stroke-width="2"/>
-            <rect x="0" y="12" width="40" height="12" fill="url(#whiteGradient)"/>
-          </g>
-          
-          <!-- Main title with enhanced styling -->
-          <text x="50%" y="45" text-anchor="middle" alignment-baseline="middle" 
+        </g>
+        
+        <!-- Top header with independence theme -->
+        <g mask="url(#center-hole)">
+          <text x="180" y="80" text-anchor="middle" alignment-baseline="middle" 
                 font-size="24" font-weight="800" fill="url(#whiteGradient)" 
                 filter="url(#shadow)">
             80 TAHUN KEMERDEKAAN
           </text>
-          <text x="50%" y="68" text-anchor="middle" alignment-baseline="middle" 
+          <text x="180" y="105" text-anchor="middle" alignment-baseline="middle" 
                 font-size="16" font-weight="600" fill="url(#goldGradient)" 
                 filter="url(#shadow)">
             REPUBLIK INDONESIA
           </text>
-          <text x="50%" y="85" text-anchor="middle" alignment-baseline="middle" 
-                font-size="11" font-weight="500" fill="#ffffff" opacity="0.9">
+          <text x="180" y="125" text-anchor="middle" alignment-baseline="middle" 
+                font-size="12" font-weight="500" fill="#ffffff" opacity="0.9">
             17 Agustus 1945 - 2025
           </text>
-          <text x="50%" y="100" text-anchor="middle" alignment-baseline="middle" 
-                font-size="9" font-weight="500" fill="url(#japfaOrange)" opacity="0.8">
-            PT Japfa Comfeed Indonesia
-          </text>
-          
-          <!-- Decorative stars -->
-          <g fill="url(#goldGradient)" opacity="0.8">
-            <polygon points="70,15 72,21 78,21 73,25 75,31 70,27 65,31 67,25 62,21 68,21" filter="url(#shadow)"/>
-            <polygon points="290,15 292,21 298,21 293,25 295,31 290,27 285,31 287,25 282,21 288,21" filter="url(#shadow)"/>
-          </g>
         </g>
-
-        <!-- Bottom section with enhanced styling and corporate tagline -->
+        
+        <!-- Bottom footer with Japfa branding -->
         <g mask="url(#center-hole)">
-          <rect x="0" y="650" width="100%" height="130" fill="url(#redGradient)" />
-          
-          <!-- Decorative border with corporate accent -->
-          <rect x="0" y="650" width="100%" height="3" fill="url(#goldGradient)" />
-          <rect x="0" y="653" width="100%" height="2" fill="url(#japfaOrange)" />
-          
-          <!-- Corporate elements -->
-          <g transform="translate(20, 665)" fill="url(#japfaOrange)" opacity="0.7">
-            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.3"/>
-            <circle cx="15" cy="15" r="6" fill="url(#japfaOrange)"/>
-            <circle cx="15" cy="15" r="3" fill="url(#whiteGradient)"/>
-          </g>
-          
-          <g transform="translate(325, 665)" fill="url(#japfaOrange)" opacity="0.7">
-            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.3"/>
-            <circle cx="15" cy="15" r="6" fill="url(#japfaOrange)"/>
-            <circle cx="15" cy="15" r="3" fill="url(#whiteGradient)"/>
-          </g>
-          
-          <!-- Anniversary text -->
-          <text x="50%" y="685" text-anchor="middle" alignment-baseline="middle" 
-                font-size="18" font-weight="700" fill="url(#whiteGradient)" 
+          <text x="180" y="650" text-anchor="middle" alignment-baseline="middle" 
+                font-size="20" font-weight="700" fill="url(#japfaOrange)" 
                 filter="url(#shadow)">
             DIRGAHAYU KE-80
           </text>
-          <text x="50%" y="703" text-anchor="middle" alignment-baseline="middle" 
-                font-size="12" font-weight="600" fill="url(#goldGradient)">
-            REPUBLIK INDONESIA
+          <text x="180" y="675" text-anchor="middle" alignment-baseline="middle" 
+                font-size="14" font-weight="600" fill="url(#redGradient)">
+            PT JAPFA COMFEED INDONESIA
           </text>
-          
-          <!-- Corporate tagline -->
-          <text x="50%" y="720" text-anchor="middle" alignment-baseline="middle" 
-                font-size="10" font-weight="600" fill="url(#japfaOrange)" opacity="0.9">
+          <text x="180" y="695" text-anchor="middle" alignment-baseline="middle" 
+                font-size="11" font-weight="500" fill="url(#japfaOrange)" opacity="0.8">
             Pertumbuhan yang Kuat dan Berkelanjutan
           </text>
-          <text x="50%" y="735" text-anchor="middle" alignment-baseline="middle" 
-                font-size="8" font-weight="500" fill="url(#whiteGradient)" opacity="0.8">
+          <text x="180" y="710" text-anchor="middle" alignment-baseline="middle" 
+                font-size="9" font-weight="500" fill="#666" opacity="0.7">
             Sustainable and Strong Growth
           </text>
-          
-          <!-- Decorative pattern -->
-          <rect x="0" y="745" width="100%" height="8" fill="url(#batikPattern)" opacity="0.3"/>
         </g>
-
-        <!-- Side decorative elements with corporate touch -->
+        
+        <!-- Decorative corner elements -->
         <g mask="url(#center-hole)">
-          <!-- Left side ornaments with Japfa orange accents -->
-          <g transform="translate(10, 300)">
-            <circle cx="15" cy="0" r="8" fill="url(#japfaOrange)" opacity="0.8"/>
-            <circle cx="15" cy="30" r="6" fill="url(#goldGradient)" opacity="0.7"/>
-            <circle cx="15" cy="55" r="4" fill="url(#japfaOrange)" opacity="0.6"/>
+          <!-- Top corners with Indonesian symbols -->
+          <g transform="translate(20, 20)">
+            <polygon points="15,5 18,12 25,12 20,17 22,24 15,20 8,24 10,17 5,12 12,12" fill="url(#goldGradient)" filter="url(#shadow)"/>
+          </g>
+          <g transform="translate(325, 20)">
+            <polygon points="15,5 18,12 25,12 20,17 22,24 15,20 8,24 10,17 5,12 12,12" fill="url(#goldGradient)" filter="url(#shadow)"/>
           </g>
           
-          <!-- Right side ornaments -->
-          <g transform="translate(335, 300)">
-            <circle cx="15" cy="0" r="8" fill="url(#japfaOrange)" opacity="0.8"/>
-            <circle cx="15" cy="30" r="6" fill="url(#goldGradient)" opacity="0.7"/>
-            <circle cx="15" cy="55" r="4" fill="url(#japfaOrange)" opacity="0.6"/>
+          <!-- Bottom corners with corporate elements -->
+          <g transform="translate(20, 735)">
+            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.8"/>
+            <text x="15" y="12" text-anchor="middle" font-size="6" font-weight="700" fill="white">JAPFA</text>
+            <text x="15" y="19" text-anchor="middle" font-size="4" font-weight="500" fill="white">2024</text>
           </g>
-          
-          <!-- Traditional motif elements with corporate style -->
-          <g transform="translate(15, 400)" fill="url(#japfaOrange)" opacity="0.5">
-            <path d="M0,0 Q10,5 20,0 Q10,10 0,15 Q10,10 20,15 Q10,20 0,25"/>
-          </g>
-          
-          <g transform="translate(325, 400)" fill="url(#japfaOrange)" opacity="0.5">
-            <path d="M20,0 Q10,5 0,0 Q10,10 20,15 Q10,10 0,15 Q10,20 20,25"/>
-          </g>
-          
-          <!-- Corporate identity elements -->
-          <g transform="translate(25, 200)">
-            <text x="0" y="0" text-anchor="start" alignment-baseline="middle" 
-                  font-size="7" font-weight="600" fill="url(#japfaOrange)" opacity="0.7"
-                  transform="rotate(-90)">
-              JAPFA
-            </text>
-          </g>
-          
-          <g transform="translate(340, 200)">
-            <text x="0" y="0" text-anchor="end" alignment-baseline="middle" 
-                  font-size="7" font-weight="600" fill="url(#japfaOrange)" opacity="0.7"
-                  transform="rotate(90)">
-              2024
-            </text>
+          <g transform="translate(305, 735)">
+            <circle cx="15" cy="15" r="12" fill="url(#japfaOrange)" opacity="0.8"/>
+            <text x="15" y="12" text-anchor="middle" font-size="6" font-weight="700" fill="white">JAPFA</text>
+            <text x="15" y="19" text-anchor="middle" font-size="4" font-weight="500" fill="white">2024</text>
           </g>
         </g>
-
-        <!-- Corner embellishments with corporate identity -->
-        <g mask="url(#center-hole)">
-          <!-- Top corners with Japfa branding -->
-          <circle cx="30" cy="30" r="3" fill="url(#japfaOrange)" opacity="0.8"/>
-          <circle cx="330" cy="30" r="3" fill="url(#goldGradient)" opacity="0.7"/>
-          
-          <!-- Bottom corners -->
-          <circle cx="30" cy="750" r="3" fill="url(#japfaOrange)" opacity="0.8"/>
-          <circle cx="330" cy="750" r="3" fill="url(#goldGradient)" opacity="0.7"/>
-          
-          <!-- Additional sparkle elements with corporate colors -->
-          <g fill="url(#japfaOrange)" opacity="0.7">
-            <polygon points="60,60 61,62 63,62 61.5,63.5 62,66 60,64.5 58,66 58.5,63.5 57,62 59,62"/>
-            <polygon points="60,720 61,722 63,722 61.5,723.5 62,726 60,724.5 58,726 58.5,723.5 57,722 59,722"/>
-          </g>
-          <g fill="url(#goldGradient)" opacity="0.6">
-            <polygon points="300,60 301,62 303,62 301.5,63.5 302,66 300,64.5 298,66 298.5,63.5 297,62 299,62"/>
-            <polygon points="300,720 301,722 303,722 301.5,723.5 302,726 300,724.5 298,726 298.5,723.5 297,722 299,722"/>
-          </g>
-          
-          <!-- Subtle corporate pattern elements -->
-          <g opacity="0.3">
-            <rect x="50" y="550" width="260" height="1" fill="url(#japfaOrange)"/>
-            <rect x="70" y="570" width="220" height="1" fill="url(#goldGradient)"/>
+      </svg><rect x="70" y="570" width="220" height="1" fill="url(#goldGradient)"/>
             <rect x="90" y="590" width="180" height="1" fill="url(#japfaOrange)"/>
           </g>
         </g>
