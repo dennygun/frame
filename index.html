@@ -49,7 +49,166 @@
 
   <div id="app">
     <video id="camera" autoplay playsinline muted></video>
-    <div class="overlay-wrap" aria-hidden="true"><svg class="overlay" viewBox="0 0 360 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><mask id="center-hole"><rect x="0" y="0" width="100%" height="100%" fill="white" /><rect x="36" y="140" width="288" height="360" rx="18" ry="18" fill="black" /></mask></defs><g mask="url(#center-hole)"><rect x="0" y="0" width="100%" height="120" fill="#e21b2d" /><text x="50%" y="64" text-anchor="middle" alignment-baseline="middle" font-size="22" font-weight="700" fill="#fff">80 Tahun Kemerdekaan RI</text><text x="50%" y="92" text-anchor="middle" alignment-baseline="middle" font-size="12" fill="#fff">Dirgahayu Republik Indonesia</text><g transform="translate(12,12) scale(0.9)"><circle cx="20" cy="20" r="16" fill="#ffd54a" /><path d="M20 10 L25 20 L20 30 L15 20 Z" fill="#e21b2d" /></g><path d="M320 24 q12 10 0 24 q-12 14 -24 0 q-12 -14 0 -24 q12 -10 24 0" fill="#fff" opacity="0.95" /><path d="M320 26 q10 8 0 20 q-10 12 -20 0 q-10 -12 0 -20 q10 -8 20 0" fill="#e21b2d" /></g><g mask="url(#center-hole)"><rect x="0" y="660" width="100%" height="120" fill="#e21b2d" /><text x="50%" y="704" text-anchor="middle" alignment-baseline="middle" font-size="16" font-weight="600" fill="#fff">17 Agustus 1945, 80 Tahun</text></g><g mask="url(#center-hole)"><circle cx="40" cy="360" r="8" fill="#ffd54a" /><circle cx="320" cy="360" r="8" fill="#ffd54a" /></g></svg></div>
+    <div class="overlay-wrap" aria-hidden="true">
+      <svg class="overlay" viewBox="0 0 360 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="center-hole">
+            <rect x="0" y="0" width="100%" height="100%" fill="white" />
+            <rect x="36" y="140" width="288" height="360" rx="18" ry="18" fill="black" />
+          </mask>
+          
+          <!-- Gradients for vibrant colors -->
+          <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e21b2d;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#c62828;stop-opacity:1" />
+          </linearGradient>
+          
+          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+          </linearGradient>
+          
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#ffb300;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
+          </linearGradient>
+          
+          <!-- Shadow filters -->
+          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="black" flood-opacity="0.3"/>
+          </filter>
+          
+          <!-- Pattern for decorative elements -->
+          <pattern id="batikPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+            <rect width="20" height="20" fill="transparent"/>
+            <circle cx="10" cy="10" r="2" fill="#ffd700" opacity="0.3"/>
+            <circle cx="5" cy="5" r="1" fill="#ffffff" opacity="0.2"/>
+            <circle cx="15" cy="15" r="1" fill="#ffffff" opacity="0.2"/>
+          </pattern>
+        </defs>
+        
+        <!-- Top red section with enhanced styling -->
+        <g mask="url(#center-hole)">
+          <rect x="0" y="0" width="100%" height="130" fill="url(#redGradient)" />
+          
+          <!-- Decorative border -->
+          <rect x="0" y="125" width="100%" height="5" fill="url(#goldGradient)" />
+          
+          <!-- Indonesian flag elements on corners -->
+          <g transform="translate(8, 8)">
+            <rect x="0" y="0" width="40" height="24" rx="4" fill="url(#redGradient)" stroke="url(#goldGradient)" stroke-width="2"/>
+            <rect x="0" y="12" width="40" height="12" fill="url(#whiteGradient)"/>
+          </g>
+          
+          <g transform="translate(312, 8)">
+            <rect x="0" y="0" width="40" height="24" rx="4" fill="url(#redGradient)" stroke="url(#goldGradient)" stroke-width="2"/>
+            <rect x="0" y="12" width="40" height="12" fill="url(#whiteGradient)"/>
+          </g>
+          
+          <!-- Main title with enhanced styling -->
+          <text x="50%" y="50" text-anchor="middle" alignment-baseline="middle" 
+                font-size="26" font-weight="800" fill="url(#whiteGradient)" 
+                filter="url(#shadow)">
+            80 TAHUN KEMERDEKAAN
+          </text>
+          <text x="50%" y="75" text-anchor="middle" alignment-baseline="middle" 
+                font-size="18" font-weight="600" fill="url(#goldGradient)" 
+                filter="url(#shadow)">
+            REPUBLIK INDONESIA
+          </text>
+          <text x="50%" y="95" text-anchor="middle" alignment-baseline="middle" 
+                font-size="12" font-weight="500" fill="#ffffff" opacity="0.9">
+            17 Agustus 1945 - 2025
+          </text>
+          
+          <!-- Decorative stars -->
+          <g fill="url(#goldGradient)" opacity="0.8">
+            <polygon points="70,20 72,26 78,26 73,30 75,36 70,32 65,36 67,30 62,26 68,26" filter="url(#shadow)"/>
+            <polygon points="290,20 292,26 298,26 293,30 295,36 290,32 285,36 287,30 282,26 288,26" filter="url(#shadow)"/>
+          </g>
+        </g>
+
+        <!-- Bottom red section with enhanced styling -->
+        <g mask="url(#center-hole)">
+          <rect x="0" y="650" width="100%" height="130" fill="url(#redGradient)" />
+          
+          <!-- Decorative border -->
+          <rect x="0" y="650" width="100%" height="5" fill="url(#goldGradient)" />
+          
+          <!-- Garuda silhouette elements -->
+          <g transform="translate(30, 670)" fill="url(#goldGradient)" opacity="0.6">
+            <circle cx="15" cy="15" r="12" fill="url(#goldGradient)" opacity="0.3"/>
+            <polygon points="15,8 18,12 22,10 18,15 20,18 15,16 10,18 12,15 8,10 12,12"/>
+          </g>
+          
+          <g transform="translate(315, 670)" fill="url(#goldGradient)" opacity="0.6">
+            <circle cx="15" cy="15" r="12" fill="url(#goldGradient)" opacity="0.3"/>
+            <polygon points="15,8 18,12 22,10 18,15 20,18 15,16 10,18 12,15 8,10 12,12"/>
+          </g>
+          
+          <!-- Anniversary text -->
+          <text x="50%" y="695" text-anchor="middle" alignment-baseline="middle" 
+                font-size="20" font-weight="700" fill="url(#whiteGradient)" 
+                filter="url(#shadow)">
+            DIRGAHAYU KE-80
+          </text>
+          <text x="50%" y="715" text-anchor="middle" alignment-baseline="middle" 
+                font-size="14" font-weight="600" fill="url(#goldGradient)">
+            NKRI HARGA MATI
+          </text>
+          
+          <!-- Decorative pattern -->
+          <rect x="0" y="720" width="100%" height="10" fill="url(#batikPattern)" opacity="0.4"/>
+        </g>
+
+        <!-- Side decorative elements -->
+        <g mask="url(#center-hole)">
+          <!-- Left side ornaments -->
+          <g transform="translate(10, 300)">
+            <circle cx="15" cy="0" r="8" fill="url(#goldGradient)" opacity="0.8"/>
+            <circle cx="15" cy="30" r="6" fill="url(#goldGradient)" opacity="0.6"/>
+            <circle cx="15" cy="55" r="4" fill="url(#goldGradient)" opacity="0.4"/>
+          </g>
+          
+          <!-- Right side ornaments -->
+          <g transform="translate(335, 300)">
+            <circle cx="15" cy="0" r="8" fill="url(#goldGradient)" opacity="0.8"/>
+            <circle cx="15" cy="30" r="6" fill="url(#goldGradient)" opacity="0.6"/>
+            <circle cx="15" cy="55" r="4" fill="url(#goldGradient)" opacity="0.4"/>
+          </g>
+          
+          <!-- Traditional motif elements -->
+          <g transform="translate(15, 400)" fill="url(#goldGradient)" opacity="0.5">
+            <path d="M0,0 Q10,5 20,0 Q10,10 0,15 Q10,10 20,15 Q10,20 0,25"/>
+          </g>
+          
+          <g transform="translate(325, 400)" fill="url(#goldGradient)" opacity="0.5">
+            <path d="M20,0 Q10,5 0,0 Q10,10 20,15 Q10,10 0,15 Q10,20 20,25"/>
+          </g>
+        </g>
+
+        <!-- Corner embellishments -->
+        <g mask="url(#center-hole)">
+          <!-- Top corners -->
+          <circle cx="30" cy="30" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+          <circle cx="330" cy="30" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+          
+          <!-- Bottom corners -->
+          <circle cx="30" cy="750" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+          <circle cx="330" cy="750" r="3" fill="url(#goldGradient)" opacity="0.7"/>
+          
+          <!-- Additional sparkle elements -->
+          <g fill="url(#goldGradient)" opacity="0.6">
+            <polygon points="60,60 61,62 63,62 61.5,63.5 62,66 60,64.5 58,66 58.5,63.5 57,62 59,62"/>
+            <polygon points="300,60 301,62 303,62 301.5,63.5 302,66 300,64.5 298,66 298.5,63.5 297,62 299,62"/>
+            <polygon points="60,720 61,722 63,722 61.5,723.5 62,726 60,724.5 58,726 58.5,723.5 57,722 59,722"/>
+            <polygon points="300,720 301,722 303,722 301.5,723.5 302,726 300,724.5 298,726 298.5,723.5 297,722 299,722"/>
+          </g>
+        </g>
+      </svg>
+    </div>
     <div class="center-cta" id="startPanel"><div class="warning" id="contextWarning" style="display:none">Note, camera access requires https, or localhost. If you open this as a file, the camera may be blocked.</div><button class="cta-btn" id="startBtn">📹 Mulai Kamera</button><label class="cta-secondary" for="fileInput">atau unggah foto</label><input id="fileInput" type="file" accept="image/*" capture="environment" /></div>
     <div class="topbar"><div class="chip" id="flipLabel">kamera belum aktif</div></div>
     <div class="message" id="msgBox" style="display:none"></div>
