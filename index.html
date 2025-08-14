@@ -43,181 +43,64 @@
     #previewOverlay img { max-width: 100%; max-height: 75%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     #previewOverlay .instruction { color: white; font-size: 16px; text-align: center; margin-top: 20px; }
     #previewOverlay .close-btn { margin-top: 20px; background: #555; }
-  </style>
+  
+@keyframes confetti-fall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+.confetti { animation: confetti-fall linear infinite; }
+</style>
 </head>
 <body>
 
   <div id="app">
     <video id="camera" autoplay playsinline muted></video>
     <div class="overlay-wrap" aria-hidden="true">
-      <svg class="overlay" viewBox="0 0 360 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <mask id="center-hole">
-            <rect x="0" y="0" width="100%" height="100%" fill="white" />
-            <rect x="36" y="140" width="288" height="360" rx="18" ry="18" fill="black" />
-          </mask>
-          
-          <!-- Gradients for vibrant colors -->
-          <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#e21b2d;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#c62828;stop-opacity:1" />
-          </linearGradient>
-          
-          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
-          </linearGradient>
-          
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#ffb300;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
-          </linearGradient>
-          
-          <!-- Japfa Orange Gradient -->
-          <linearGradient id="japfaOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#e85d28;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#d14d1f;stop-opacity:1" />
-          </linearGradient>
-          
-          <!-- Shadow filters -->
-          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="black" flood-opacity="0.3"/>
-          </filter>
-          
-          <!-- Pattern for decorative elements -->
-          <pattern id="batikPattern" patternUnits="userSpaceOnUse" width="20" height="20">
-            <rect width="20" height="20" fill="transparent"/>
-            <circle cx="10" cy="10" r="2" fill="#ffd700" opacity="0.3"/>
-            <circle cx="5" cy="5" r="1" fill="#ffffff" opacity="0.2"/>
-            <circle cx="15" cy="15" r="1" fill="#ffffff" opacity="0.2"/>
-          </pattern>
-          
-          <!-- Japfa Logo Path -->
-          <g id="japfaLogo">
-            <path d="M0,0 Q15,0 15,15 Q15,30 0,30 L0,20 Q8,20 8,15 Q8,10 0,10 Z" fill="url(#japfaOrange)"/>
-            <path d="M18,30 L18,0 L25,0 Q35,0 35,10 Q35,15 30,17 L35,30 L28,30 L24,19 L25,19 L25,12 Q25,8 21,8 L25,8 L25,30 Z" fill="url(#japfaOrange)"/>
-          </g>
-        </defs>
-      <svg class="overlay" viewBox="0 0 360 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <mask id="center-hole">
-            <rect x="0" y="0" width="100%" height="100%" fill="white" />
-            <!-- Circular hole for selfie -->
-            <circle cx="180" cy="390" r="120" fill="black" />
-          </mask>
-          
-          <!-- Gradients for vibrant colors -->
-          <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#ff1744;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#e21b2d;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#c62828;stop-opacity:1" />
-          </linearGradient>
-          
-          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
-          </linearGradient>
-          
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#ffb300;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
-          </linearGradient>
-          
-          <!-- Japfa Orange Gradient -->
-          <linearGradient id="japfaOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#e85d28;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#d14d1f;stop-opacity:1" />
-          </linearGradient>
-          
-          <!-- Shadow filters -->
-          <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="black" flood-opacity="0.4"/>
-          </filter>
-        </defs>
-        
-        <!-- Background with Indonesian flag colors -->
-        <g mask="url(#center-hole)">
-          <!-- Red background (top half) -->
-          <rect x="0" y="0" width="100%" height="390" fill="url(#redGradient)" />
-          <!-- White background (bottom half) -->
-          <rect x="0" y="390" width="100%" height="390" fill="url(#whiteGradient)" />
-        </g>
-        
-        <!-- Circular frame design inspired by Japfa annual report -->
-        <g mask="url(#center-hole)">
-          <!-- Outer orange circle -->
-          <circle cx="180" cy="390" r="180" fill="url(#japfaOrange)" />
-          <circle cx="180" cy="390" r="165" fill="url(#whiteGradient)" />
-          
-          <!-- Inner decorative circle with dots -->
-          <circle cx="180" cy="390" r="155" fill="url(#japfaOrange)" />
-          <circle cx="180" cy="390" r="140" fill="url(#whiteGradient)" />
-          
-          <!-- White dots around the circle (like in Japfa design) -->
-          <g fill="white">
-            <circle cx="180" cy="235" r="8" />
-            <circle cx="225" cy="250" r="8" />
-            <circle cx="260" cy="280" r="8" />
-            <circle cx="285" cy="320" r="8" />
-            <circle cx="300" cy="365" r="8" />
-            <circle cx="305" cy="415" r="8" />
-            <circle cx="285" cy="460" r="8" />
-            <circle cx="260" cy="500" r="8" />
-            <circle cx="225" cy="530" r="8" />
-            <circle cx="180" cy="545" r="8" />
-            <circle cx="135" cy="530" r="8" />
-            <circle cx="100" cy="500" r="8" />
-            <circle cx="75" cy="460" r="8" />
-            <circle cx="55" cy="415" r="8" />
-            <circle cx="60" cy="365" r="8" />
-            <circle cx="75" cy="320" r="8" />
-            <circle cx="100" cy="280" r="8" />
-            <circle cx="135" cy="250" r="8" />
-          </g>
-        </g>
-        
-        
-        <!-- Header text above the circular frame -->
-        <g mask="url(#center-hole)">
-          <text x="180" y="80" text-anchor="middle" alignment-baseline="middle" 
-                font-size="22" font-weight="800" fill="url(#whiteGradient)" 
-                filter="url(#shadow)">
-            80 TAHUN KEMERDEKAAN RI
-          </text>
-          <text x="180" y="105" text-anchor="middle" alignment-baseline="middle" 
-                font-size="14" font-weight="600" fill="url(#goldGradient)" 
-                filter="url(#shadow)">
-            17 Agustus 1945 - 2025
-          </text>
-        </g>
-        
-        <!-- Footer text below the circular frame -->
-        <g mask="url(#center-hole)">
-          <text x="180" y="620" text-anchor="middle" alignment-baseline="middle" 
-                font-size="18" font-weight="700" fill="url(#japfaOrange)" 
-                filter="url(#shadow)">
-            PT JAPFA COMFEED INDONESIA
-          </text>
-          <text x="180" y="645" text-anchor="middle" alignment-baseline="middle" 
-                font-size="12" font-weight="600" fill="url(#redGradient)">
-            Pertumbuhan yang Kuat dan Berkelanjutan
-          </text>
-          <text x="180" y="665" text-anchor="middle" alignment-baseline="middle" 
-                font-size="10" font-weight="500" fill="url(#goldGradient)" opacity="0.8">
-            Sustainable and Strong Growth
-          </text>
-        </g>
-      </svg><rect x="70" y="570" width="220" height="1" fill="url(#goldGradient)"/>
-            <rect x="90" y="590" width="180" height="1" fill="url(#japfaOrange)"/>
-          </g>
-        </g>
-      </svg>
-    </div>
+<svg class="overlay" viewBox="0 0 360 780" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="center-hole">
+      <rect x="0" y="0" width="100%" height="100%" fill="white"/>
+      <!-- Rectangular hole -->
+      <rect x="40" y="160" width="280" height="400" rx="20" ry="20" fill="black"/>
+    </mask>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd700"/>
+      <stop offset="100%" stop-color="#ff8f00"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="black" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Flag background -->
+  <g mask="url(#center-hole)">
+    <rect x="0" y="0" width="360" height="390" fill="#d50000"/>
+    <rect x="0" y="390" width="360" height="390" fill="#ffffff"/>
+  </g>
+
+  <!-- Gold frame -->
+  <rect x="38" y="158" width="284" height="404" rx="22" ry="22" fill="none" stroke="url(#goldGradient)" stroke-width="6" filter="url(#shadow)"/>
+
+  <!-- Batik corners -->
+  <circle cx="20" cy="20" r="15" fill="url(#goldGradient)"/>
+  <circle cx="340" cy="20" r="15" fill="url(#goldGradient)"/>
+  <circle cx="20" cy="760" r="15" fill="url(#goldGradient)"/>
+  <circle cx="340" cy="760" r="15" fill="url(#goldGradient)"/>
+
+  <!-- Garuda icons top/bottom -->
+  <text x="180" y="80" text-anchor="middle" font-size="32" font-weight="bold" fill="gold">🦅</text>
+  <text x="180" y="720" text-anchor="middle" font-size="32" font-weight="bold" fill="gold">🦅</text>
+
+  <!-- Confetti -->
+  <g>
+    <rect class="confetti" x="50" y="-50" width="6" height="12" fill="red" style="animation: confetti-fall 4s linear infinite;"/>
+    <rect class="confetti" x="100" y="-80" width="6" height="12" fill="white" style="animation: confetti-fall 5s linear infinite 1s;"/>
+    <rect class="confetti" x="150" y="-60" width="6" height="12" fill="gold" style="animation: confetti-fall 3.5s linear infinite 0.5s;"/>
+    <rect class="confetti" x="200" y="-90" width="6" height="12" fill="green" style="animation: confetti-fall 4.5s linear infinite 1.2s;"/>
+    <rect class="confetti" x="250" y="-70" width="6" height="12" fill="blue" style="animation: confetti-fall 4.2s linear infinite 0.8s;"/>
+  </g>
+</svg>
+</div>
     <div class="center-cta" id="startPanel"><div class="warning" id="contextWarning" style="display:none">Note, camera access requires https, or localhost. If you open this as a file, the camera may be blocked.</div><button class="cta-btn" id="startBtn">📹 Mulai Kamera</button><label class="cta-secondary" for="fileInput">atau unggah foto</label><input id="fileInput" type="file" accept="image/*" capture="environment" /></div>
     <div class="topbar"><div class="chip" id="flipLabel">kamera belum aktif</div></div>
     <div class="message" id="msgBox" style="display:none"></div>
